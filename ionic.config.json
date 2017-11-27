@@ -1,0 +1,8 @@
+{
+  "name": "MovieLibrary",
+  "app_id": "0788d5a8",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
