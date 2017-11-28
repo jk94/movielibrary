@@ -4,7 +4,6 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { MyApp } from './app.component';
 
 import { AboutPage } from '../pages/about/about';
-import { ContactPage } from '../pages/contact/contact';
 import { HomePage } from '../pages/home/home';
 import { TabsPage } from '../pages/tabs/tabs';
 
@@ -16,6 +15,9 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from "@ngx-translate/http-loader";
 import { HttpClient, HttpClientModule } from "@angular/common/http";
 import { Globalization } from "@ionic-native/globalization";
+import { SettingsPage } from "../pages/settings/settings";
+import { ListPage } from "../pages/list/list";
+import { SearchApi } from "../api/search.api";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -25,10 +27,11 @@ export function createTranslateLoader(http: HttpClient) {
             declarations : [
               MyApp,
               AboutPage,
-              ContactPage,
               HomePage,
               TabsPage,
-              SearchPage
+              SearchPage,
+              SettingsPage,
+              ListPage
             ],
             imports : [
               BrowserModule,
@@ -46,15 +49,17 @@ export function createTranslateLoader(http: HttpClient) {
             entryComponents : [
               MyApp,
               AboutPage,
-              ContactPage,
               HomePage,
               TabsPage,
-              SearchPage
+              SearchPage,
+              SettingsPage,
+              ListPage
             ],
             providers : [
               StatusBar,
               SplashScreen,
               Globalization,
+              SearchApi,
               { provide : ErrorHandler, useClass : IonicErrorHandler }
             ]
           })

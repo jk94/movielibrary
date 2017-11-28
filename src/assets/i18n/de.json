@@ -1,11 +1,21 @@
 {
   "HELLO": "Hallo Welt!",
   "SEARCH_TAB": {
-    "TITLE": "Suche"
+    "TITLE": "Titelsuche",
+    "BUTTON_SEARCH": "Suchen",
+    "SEARCHBAR_PLACEHOLDER": "Suche nach Filmen oder Serien"
   },
   "TABS": {
     "TAB_SEARCH_TITLE": "Suche",
     "TAB_LIST_TITLE": "Meine Liste",
     "TAB_SETTINGS_TITLE": "Einstellungen"
+  },
+  "SETTINGS_TAB": {
+    "TITLE": "Einstellungen",
+    "BUTTON_ABOUT": "Über"
+  },
+  "LIST_TAB": {
+    "TITLE": "Meine Liste",
+    "NO_ITEMS": "Hier sind noch keine Filme"
   }
 }

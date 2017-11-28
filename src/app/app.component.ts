@@ -15,14 +15,15 @@ export class MyApp {
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, globalization: Globalization) {
     // this language will be used as a fallback when a translation isn't found in the current language
-    translate.setDefaultLang('en');
+    translate.setDefaultLang('de');
+    translate.use('de');
 
-    // the lang to use, if the lang isn't available, it will use the current loader to get them
+
     //TODO Localize here
     globalization.getPreferredLanguage().then((lang) => {
-      translate.use(lang.value);
+      //translate.use(lang.value);
     }).catch(() => {
-      translate.use('en');
+
     });
 
     platform.ready().then(() => {

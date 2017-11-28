@@ -14,11 +14,12 @@
 
 
 <ion-content padding>
-  <ion-searchbar [(ngModel)]="searchInput"></ion-searchbar>
-  <button ion-button (click)="getItems()" block>{{'SEARCH_TAB.TITLE'|translate}}</button>
+  <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="true"
+                 placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}"></ion-searchbar>
+  <button ion-button (click)="getItems()" block>{{'SEARCH_TAB.BUTTON_SEARCH' | translate}}</button>
   <ion-list>
     <ion-item *ngFor="let item of visibleItems">
-      {{ item }}
+      {{ item | json }}
     </ion-item>
   </ion-list>
   {{a | json}}
