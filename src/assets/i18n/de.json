@@ -1,0 +1,11 @@
+{
+  "HELLO": "Hallo Welt!",
+  "SEARCH_TAB": {
+    "TITLE": "Suche"
+  },
+  "TABS": {
+    "TAB_SEARCH_TITLE": "Suche",
+    "TAB_LIST_TITLE": "Meine Liste",
+    "TAB_SETTINGS_TITLE": "Einstellungen"
+  }
+}
