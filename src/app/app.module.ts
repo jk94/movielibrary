@@ -18,6 +18,8 @@ import { Globalization } from "@ionic-native/globalization";
 import { SettingsPage } from "../pages/settings/settings";
 import { ListPage } from "../pages/list/list";
 import { SearchApi } from "../api/search.api";
+import { SearchProvider } from '../providers/search/search';
+import { ComponentsModule } from "../components/components.module";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -43,7 +45,8 @@ export function createTranslateLoader(http: HttpClient) {
                                           useFactory : createTranslateLoader,
                                           deps : [ HttpClient ]
                                         }
-                                      })
+                                      }),
+              ComponentsModule
             ],
             bootstrap : [ IonicApp ],
             entryComponents : [
@@ -60,7 +63,9 @@ export function createTranslateLoader(http: HttpClient) {
               SplashScreen,
               Globalization,
               SearchApi,
-              { provide : ErrorHandler, useClass : IonicErrorHandler }
+              SearchProvider,
+              { provide : ErrorHandler, useClass : IonicErrorHandler },
+              SearchProvider
             ]
           })
 export class AppModule {}
