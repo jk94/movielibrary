@@ -1,12 +1,15 @@
 <ion-card>
   <ion-card-header>
-    {{item.vote_average}}({{item.vote_count}})
-  </ion-card-header>
-  <ion-card-content>
     <ion-card-title>
       {{item.title}}
     </ion-card-title>
-    {{item.overview}}
+    {{item.vote_average}}({{item.vote_count}})
+  </ion-card-header>
+  <img src="{{image}}">
+  <ion-card-content>
+    <p text-wrap>
+      {{item.overview}}
+    </p>
 
   </ion-card-content>
 </ion-card>

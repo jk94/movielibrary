@@ -20,6 +20,7 @@ import { ListPage } from "../pages/list/list";
 import { SearchApi } from "../api/search.api";
 import { SearchProvider } from '../providers/search/search';
 import { ComponentsModule } from "../components/components.module";
+import { PosterApi } from "../api/poster.api";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,6 +64,7 @@ export function createTranslateLoader(http: HttpClient) {
               SplashScreen,
               Globalization,
               SearchApi,
+              PosterApi,
               SearchProvider,
               { provide : ErrorHandler, useClass : IonicErrorHandler },
               SearchProvider

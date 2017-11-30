@@ -1,22 +1,13 @@
 import { Injectable } from "@angular/core";
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
+import { Api } from "./api";
 
 @Injectable()
-export class SearchApi {
+export class SearchApi extends Api {
 
-  baseUrl                  = 'https://api.themoviedb.org/3';
-  private apiKey: string   = "7464d21bf6e585b4e9395f6d90cfa860";
-  private language: string = "de-DE";
-  private region: string   = "DE";
-
-  public getDefaultParams(): HttpParams {
-    return new HttpParams()
-      .set('api_key', this.apiKey)
-      .set('language', this.language)
-      .set('region', this.region);
-  }
 
   constructor(public http: HttpClient) {
+    super();
   }
 
   searchMultiple(search: string): any {

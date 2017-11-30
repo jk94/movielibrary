@@ -1,22 +1,21 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Movie } from "../../models/movie";
+import { PosterApi } from "../../api/poster.api";
 
-/**
- * Generated class for the MovieCardComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
              selector : 'movie-card',
              templateUrl : 'movie-card.html'
            })
-export class MovieCardComponent {
-
+export class MovieCardComponent implements OnInit {
   @Input() item: Movie;
+           image: string;
 
-  constructor() {
+  constructor(private poster: PosterApi) {
 
+  }
+
+  ngOnInit(): void {
+    this.image = this.poster.getPosterLink(this.item.poster_path);
   }
 
 }
