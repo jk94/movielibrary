@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { SearchApi } from "../../api/search.api";
 
 /**
  * Generated class for the SearchPage page.
@@ -18,15 +19,19 @@ export class SearchPage {
   visibleItems: any[];
   searchInput: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, public searchApi: SearchApi) {
   }
 
   ionViewDidLoad() {
   }
 
   getItems() {
-
+    console.log(this.searchInput);
+    this.searchApi.searchMultiple(this.searchInput)
+        .subscribe(result => {
+          console.log(result);
+          this.visibleItems = JSON.parse(JSON.stringify(result.body.results));
+        }, error => {console.log(error)});
   }
-
 
 }
