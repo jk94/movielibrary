@@ -9,14 +9,15 @@ import { MovieProvider } from "../../providers/movie/movie.provider";
            })
 export class SearchPage implements OnInit {
 
-  a: any;
   visibleItems: any[];
   searchInput: string;
+  displayMode: 'discover' | 'search';
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public search: SearchProvider,
               public movie: MovieProvider) {
+    this.displayMode = "discover";
   }
 
   ionViewDidLoad() {
@@ -31,7 +32,10 @@ export class SearchPage implements OnInit {
   getItems() {
     console.log(this.searchInput);
     this.search.search(this.searchInput)
-        .then(results => this.visibleItems = results)
+        .then(results => {
+          this.visibleItems = results;
+          this.displayMode  = "search"
+        })
         .catch(error => {});
   }
 

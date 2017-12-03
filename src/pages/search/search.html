@@ -18,10 +18,22 @@
 <ion-content>
   <!--<button ion-button (click)="getItems()" block>{{'SEARCH_TAB.BUTTON_SEARCH' | translate}}</button>-->
 
-  <ion-list>
-    <ion-item *ngFor="let item of visibleItems">
-      <movie-card [item]="item"></movie-card>
-    </ion-item>
-  </ion-list>
-  {{a | json}}
+  <div *ngIf="displayMode=='discover'">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-6 col-sm-6 col-md-4 *ngFor="let item of visibleItems">
+          <movie-card-discover [item]="item"></movie-card-discover>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <div *ngIf="displayMode=='search'">
+    <ion-list>
+      <ion-item *ngFor="let item of visibleItems">
+        <movie-result-item [movie]="item"></movie-result-item>
+      </ion-item>
+    </ion-list>
+  </div>
+
 </ion-content>
