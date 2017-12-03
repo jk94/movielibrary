@@ -1,17 +1,23 @@
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>{{'SEARCH_TAB.TITLE' | translate}}</ion-title>
-  </ion-navbar>
+  <!--
+    <ion-navbar>
+      <ion-title>{{'SEARCH_TAB.TITLE' | translate}}</ion-title>
+    </ion-navbar>
+  -->
+
+  <ion-toolbar color="primary">
+    <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="true"
+                   placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}" (search)="getItems()">
+    </ion-searchbar>
+  </ion-toolbar>
 
 </ion-header>
 
 
 <ion-content>
-  <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="true"
-                 placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}" (search)="getItems()">
-  </ion-searchbar>
-  <button ion-button (click)="getItems()" block>{{'SEARCH_TAB.BUTTON_SEARCH' | translate}}</button>
+  <!--<button ion-button (click)="getItems()" block>{{'SEARCH_TAB.BUTTON_SEARCH' | translate}}</button>-->
+
   <ion-list>
     <ion-item *ngFor="let item of visibleItems">
       <movie-card [item]="item"></movie-card>

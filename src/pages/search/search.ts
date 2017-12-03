@@ -1,28 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { SearchProvider } from "../../providers/search/search";
-
-/**
- * Generated class for the SearchPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { SearchProvider } from "../../providers/search/search.provider";
+import { MovieProvider } from "../../providers/movie/movie.provider";
 
 @Component({
              selector : 'page-search',
              templateUrl : 'search.html',
            })
-export class SearchPage {
+export class SearchPage implements OnInit {
 
   a: any;
   visibleItems: any[];
   searchInput: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public search: SearchProvider) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public search: SearchProvider,
+              public movie: MovieProvider) {
   }
 
   ionViewDidLoad() {
+  }
+
+  ngOnInit() {
+    this.movie.discoverMovies()
+        .then(results => this.visibleItems = results)
+        .catch(error => {});
   }
 
   getItems() {

@@ -17,5 +17,12 @@
   "LIST_TAB": {
     "TITLE": "Meine Liste",
     "NO_ITEMS": "Hier sind noch keine Filme"
+  },
+  "PAGES": {
+    "MOVIE_DETAIL_PAGE": {
+      "ERROR": {
+        "COULD_NOT_LOAD": "Film konnte nicht geladen werden"
+      }
+    }
   }
 }

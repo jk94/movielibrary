@@ -18,9 +18,12 @@ import { Globalization } from "@ionic-native/globalization";
 import { SettingsPage } from "../pages/settings/settings";
 import { ListPage } from "../pages/list/list";
 import { SearchApi } from "../api/search.api";
-import { SearchProvider } from '../providers/search/search';
+import { SearchProvider } from '../providers/search/search.provider';
 import { ComponentsModule } from "../components/components.module";
 import { PosterApi } from "../api/poster.api";
+import { MovieProvider } from '../providers/movie/movie.provider';
+import { MovieApi } from "../api/movie.api";
+import { MovieDetailPage } from "../pages/movie-detail/movie-detail";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -34,7 +37,8 @@ export function createTranslateLoader(http: HttpClient) {
               TabsPage,
               SearchPage,
               SettingsPage,
-              ListPage
+              ListPage,
+              MovieDetailPage
             ],
             imports : [
               BrowserModule,
@@ -57,7 +61,8 @@ export function createTranslateLoader(http: HttpClient) {
               TabsPage,
               SearchPage,
               SettingsPage,
-              ListPage
+              ListPage,
+              MovieDetailPage
             ],
             providers : [
               StatusBar,
@@ -65,9 +70,10 @@ export function createTranslateLoader(http: HttpClient) {
               Globalization,
               SearchApi,
               PosterApi,
+              MovieApi,
               SearchProvider,
-              { provide : ErrorHandler, useClass : IonicErrorHandler },
-              SearchProvider
+              MovieProvider,
+              { provide : ErrorHandler, useClass : IonicErrorHandler }
             ]
           })
 export class AppModule {}

@@ -18,7 +18,6 @@ export class MyApp {
     translate.setDefaultLang('de');
     translate.use('de');
 
-
     //TODO Localize here
     globalization.getPreferredLanguage().then((lang) => {
       //translate.use(lang.value);
@@ -31,6 +30,8 @@ export class MyApp {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
+      statusBar.overlaysWebView(true);
+      statusBar.show();
       splashScreen.hide();
     });
   }
