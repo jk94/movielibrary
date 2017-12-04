@@ -1,0 +1,20 @@
+<!-- Generated template for the MovieResultItemComponent component -->
+<div (click)="_itemClicked()">
+  <ion-grid>
+    <ion-row>
+      <ion-col col-4 class="image-col">
+        <img src="{{image}}">
+      </ion-col>
+      <ion-col col-8 class="content-col">
+        <div class="inner-content">
+          <div class="movie-title" text-wrap>
+            {{movie.title}} ({{movie.release_date | date:'yyyy'}})
+          </div>
+          <div class="movie-actors">
+
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</div>

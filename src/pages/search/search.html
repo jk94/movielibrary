@@ -8,8 +8,15 @@
 
   <ion-toolbar color="primary">
     <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="true"
-                   placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}" (search)="getItems()">
+                   placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}" (search)="getItems($event)"
+                   (ionCancel)="cancelSearch()"
+                   style="display:none;">
     </ion-searchbar>
+    <ion-buttons end>
+      <button ion-button icon-only color="royal" (click)="showSearch()" *ngIf="!isSearchVisible">
+        <ion-icon name="search"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-toolbar>
 
 </ion-header>
@@ -29,9 +36,9 @@
   </div>
 
   <div *ngIf="displayMode=='search'" class="search-results">
-    <ion-list>
+    <ion-list id="search-result-list">
       <ion-item *ngFor="let item of visibleItems">
-        <movie-list-item [movie]="item"></movie-list-item>
+        <movie-list-item [movie]="item" (itemClicked)="openSearchResult($event)"></movie-list-item>
       </ion-item>
     </ion-list>
   </div>
