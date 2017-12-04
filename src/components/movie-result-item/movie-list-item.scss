@@ -1,0 +1,24 @@
+movie-list-item {
+  ion-grid.grid {
+    padding: 0;
+
+    ion-col.image-col {
+      padding: 0;
+    }
+
+    ion-col.content-col {
+      display: flex;
+      flex-flow: column;
+      justify-content: center;
+
+      .inner-content {
+        padding-left: 10px;
+        padding-right: 10px;
+
+        .movie-title {
+          font-size: 1.8rem;
+        }
+      }
+    }
+  }
+}

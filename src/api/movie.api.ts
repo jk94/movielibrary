@@ -15,7 +15,7 @@ export class MovieApi extends Api {
                      .set('include_video', 'true')
                      .set('include_adult', 'true');
     return this.http.get(this.baseUrl + '/discover/movie',
-      { params : params, observe : 'response' })
+      { params : params, observe : 'response' });
   }
 
   movie(movieID: number): Observable<any> {
