@@ -2,17 +2,11 @@ import { Component, Input, OnInit } from '@angular/core';
 import { PosterApi } from "../../api/poster.api";
 import { Movie } from "../../models/movie";
 
-/**
- * Generated class for the MovieResultItemComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
-             selector : 'movie-result-item',
-             templateUrl : 'movie-result-item.html'
+             selector : 'movie-list-item',
+             templateUrl : 'movie-list-item.html'
            })
-export class MovieResultItemComponent implements OnInit {
+export class MovieListItemComponent implements OnInit {
 
   @Input() movie: Movie;
            image: string;

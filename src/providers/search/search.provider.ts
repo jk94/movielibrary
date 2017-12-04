@@ -11,12 +11,13 @@ export class SearchProvider {
 
   public search(query: string): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.searchApi.searchMultiple(query)
+      this.searchApi.searchMovies(query)
           .subscribe(result => {
             Logger.log(result);
             resolve(result.body.results);
           }, error => {
             Logger.error(error);
+            reject(error);
           });
     })
   }

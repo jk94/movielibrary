@@ -1,3 +1,18 @@
 page-search {
 
+  .search-results {
+
+    > ion-list > ion-item {
+      padding-left: 0;
+
+      > .item-inner {
+        padding-left: 10px;
+        padding-right: 10px;
+        > div > ion-label {
+          margin: 0;
+        }
+      }
+    }
+  }
+
 }
