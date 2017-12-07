@@ -8,14 +8,41 @@
 
 
 <ion-content>
-  <img src="{{image}}" class="poster">
-  <ion-list>
-    <ion-item>
-      <p text-wrap>
-        {{movieItem?.overview}}
-      </p>
-    </ion-item>
-  </ion-list>
+  <img src="{{backdrop}}" class="poster">
+  <div class="detail-content-header">
+    <div class="movie-title">{{movieItem?.title}}</div>
+    <div>
+      <span class="release-year">
+        {{movieItem?.release_date | date:'yyyy'}}
+      </span>
+      <span class="">
 
-
+      </span>
+      <span class="runtime" *ngIf="movieItem?.runtime>0">
+        {{movieItem?.runtime}}
+      </span>
+      <span class="genres">
+        <span *ngFor="let genre of movieItem?.genres | slice:0:3; last as isLast">
+          {{genre.name}}<span *ngIf="!isLast">, </span>
+        </span>
+      </span>
+    </div>
+  </div>
+  <hr/>
+  <div class="detail-content">
+    <ion-grid>
+      <ion-row>
+        <ion-col col-4 class="image-col">
+          <img src="{{image}}">
+        </ion-col>
+        <ion-col col-8 class="content-col">
+          <div class="inner-content">
+            <p text-wrap class="movie-overview">
+              {{movieItem?.overview}}
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
 </ion-content>

@@ -9,14 +9,14 @@ export class MovieProvider {
   constructor(public http: HttpClient, public movieApi: MovieApi) {
   }
 
-  discoverMovies(): Promise<any> {
-    return new Promise((resolve, reject) => {
-      this.movieApi.discoverMovie()
-          .subscribe(result => {
-            Logger.log(result);
-            resolve(result.body.results);
-          }, reject);
-    });
+  discoverMovies(page?: number): Promise<any> {
+      return new Promise((resolve, reject) => {
+        this.movieApi.discoverMovie(page ? page : 1)
+            .subscribe(result => {
+              Logger.log(result);
+              resolve(result.body.results);
+            }, reject);
+      });
   }
 
   getMovie(movieID: number): Promise<any> {

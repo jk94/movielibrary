@@ -1,44 +1,34 @@
 <ion-header>
 
-  <!--
-    <ion-navbar>
-      <ion-title>{{'SEARCH_TAB.TITLE' | translate}}</ion-title>
-    </ion-navbar>
-  -->
-
-  <ion-toolbar color="primary">
-    <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="true"
-                   placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}" (search)="getItems($event)"
-                   (ionCancel)="cancelSearch()"
-                   style="display:none;">
+  <ion-navbar color="primary">
+    <ion-searchbar [(ngModel)]="searchInput" [showCancelButton]="false"
+                   placeholder=" {{'SEARCH_TAB.SEARCHBAR_PLACEHOLDER' | translate}}"
+                   (search)="onSearchSubmit($event)"
+                   (ionFocus)="onSearchFocus($event)"
+                   (ionBlur)="onSearchBlur($event)">
     </ion-searchbar>
-    <ion-buttons end>
-      <button ion-button icon-only color="royal" (click)="showSearch()" *ngIf="!isSearchVisible">
-        <ion-icon name="search"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-toolbar>
+  </ion-navbar>
 
 </ion-header>
 
 
 <ion-content>
-  <!--<button ion-button (click)="getItems()" block>{{'SEARCH_TAB.BUTTON_SEARCH' | translate}}</button>-->
 
-  <div *ngIf="displayMode=='discover'" class="discover-results">
-    <ion-grid>
-      <ion-row>
-        <ion-col col-6 col-sm-6 col-md-4 *ngFor="let item of visibleItems">
-          <movie-card-discover [item]="item"></movie-card-discover>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-  </div>
-
-  <div *ngIf="displayMode=='search'" class="search-results">
+  <div class="search-results" [style.display]="displayMode=='result'?'block':'none'">
+    <ion-refresher (ionRefresh)="doRefresh($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
     <ion-list id="search-result-list">
       <ion-item *ngFor="let item of visibleItems">
         <movie-list-item [movie]="item" (itemClicked)="openSearchResult($event)"></movie-list-item>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <div class="search-results" [style.display]="displayMode=='search'?'block':'none'">
+    <ion-list id="search-input-list">
+      <ion-item *ngFor="let item of lastSearchEntries" (click)="searchInputClick(item)">
+        {{item}}
       </ion-item>
     </ion-list>
   </div>

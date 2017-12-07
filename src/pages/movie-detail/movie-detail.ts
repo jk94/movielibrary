@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, ToastController } from 'ionic-angular';
+import { Loading, LoadingController, NavController, NavParams, ToastController } from 'ionic-angular';
 import { Logger } from "../../utils/logger";
 import { Movie } from "../../models/movie";
 import { PosterApi } from "../../api/poster.api";
@@ -13,38 +13,43 @@ import { TranslateService } from "@ngx-translate/core";
 export class MovieDetailPage {
 
   movieItem: Movie;
+  backdrop: string;
   image: string;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,
-              public movie: MovieProvider,
-              public poster: PosterApi,
-              public toast: ToastController,
-              public translate: TranslateService) {
+  loading: Loading;
+
+  constructor(private navCtrl: NavController,
+              private navParams: NavParams,
+              private movie: MovieProvider,
+              private poster: PosterApi,
+              private toast: ToastController,
+              private translate: TranslateService,
+              private loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
     Logger.log(this.navParams.data);
+    this.loading = this.loadingCtrl.create({
+                                             showBackdrop : true,
+                                             content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
+                                           });
+    this.loading.present();
     this.movie.getMovie(this.navParams.get('movieID'))
         .then(movie => {
           this.movieItem = movie;
+          this.backdrop  = this.poster.getBackdropLink(movie.backdrop_path);
           this.image     = this.poster.getPosterLink(movie.poster_path);
+          this.loading.dismiss();
         })
         .catch((err) => {
-          this.translate.get('PAGES.MOVIE_DETAIL_PAGE.ERROR.COULD_NOT_LOAD')
-              .subscribe(value => {
-                this.toast.create({
-                                    message : value,
-                                    position : 'bottom',
-                                    showCloseButton : false,
-                                    duration : 2000
-                                  }).present();
-                this.navCtrl.pop();
-              });
-
+          this.loading.dismiss();
+          this.toast.create({
+                              message : this.translate.instant('PAGES.MOVIE_DETAIL_PAGE.ERROR.COULD_NOT_LOAD'),
+                              position : 'bottom',
+                              showCloseButton : false,
+                              duration : 2000
+                            }).present();
+          this.navCtrl.pop();
         });
   }
 }
-
-/*
-
- */

@@ -6,17 +6,17 @@ export class LoggerImpl implements ILogger {
 
   log(...any) {
     if (this.logActive)
-      console.log(any)
+      console.log(...any)
   }
 
   error(...any) {
     if (this.logActive)
-      console.error(any)
+      console.error(...any)
   }
 
   debug(...any) {
     if (this.logActive)
-      console.debug(any);
+      console.debug(...any);
   }
 
 }

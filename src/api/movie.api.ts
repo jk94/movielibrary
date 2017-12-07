@@ -10,17 +10,25 @@ export class MovieApi extends Api {
     super();
   }
 
-  discoverMovie(): Observable<any> {
-    let params = this.getDefaultParams()
-                     .set('include_video', 'true')
-                     .set('include_adult', 'true');
-    return this.http.get(this.baseUrl + '/discover/movie',
-      { params : params, observe : 'response' });
+  discoverMovie(page?: number): Observable<any> {
+    if (page && page > 0 && page <= 100) {
+      let params = this.getDefaultParams()
+                       .set('include_video', 'true')
+                       .set('include_adult', 'true');
+      if (page)
+        params = params.set('page', '' + page);
+      return this.http.get(this.baseUrl + '/discover/movie',
+        { params : params, observe : 'response' });
+    }
+    else
+      return Observable.create(observer => {
+        observer.error('Page must be between 1 and 100');
+      });
   }
 
   movie(movieID: number): Observable<any> {
     let params = this.getDefaultParams()
-                     .set('append_to_response', 'videos,images');
+                     .set('append_to_response', 'videos,images,release_dates');
 
     return this.http.get(`${this.baseUrl}/movie/${movieID}`, {
       params : params,

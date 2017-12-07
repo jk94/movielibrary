@@ -13,7 +13,11 @@ import { Globalization } from "@ionic-native/globalization";
 export class MyApp {
   rootPage: any = TabsPage;
 
-  constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen, translate: TranslateService, globalization: Globalization) {
+  constructor(platform: Platform,
+              statusBar: StatusBar,
+              splashScreen: SplashScreen,
+              translate: TranslateService,
+              globalization: Globalization) {
     // this language will be used as a fallback when a translation isn't found in the current language
     translate.setDefaultLang('de');
     translate.use('de');
