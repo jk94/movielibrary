@@ -4,6 +4,11 @@ page-search {
     background-color: color($colors, light);
   }
 
+  #search-input-list > ion-item-sliding > ion-item {
+    height: 54px;
+    font-size: 1.8rem;
+  }
+
   .search-results {
 
     > ion-list > ion-item {

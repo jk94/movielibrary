@@ -12,8 +12,9 @@ import { NativeStorage } from "@ionic-native/native-storage";
            })
 export class SearchPage implements OnInit {
 
-  visibleItems: Movie[];
   searchInput: string;
+  searchInputOfLastResult: string;
+  visibleItems: Movie[];
 
   lastSearchEntries: string[] = [];
 
@@ -54,7 +55,7 @@ export class SearchPage implements OnInit {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
       });
     loading.present();
-    this.getItems(event)
+    this.getItems(this.searchInput, event)
         .then(() => {
           loading.dismiss();
         }).catch((err) => {console.log(err); });
@@ -69,7 +70,8 @@ export class SearchPage implements OnInit {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
       });
     loading.present();
-    this.getItems()
+    let query: string = this.searchInput.length > 0 ? this.searchInput : this.searchInputOfLastResult;
+    this.getItems(query)
         .then(() => {
           loading.dismiss();
           event.complete();
@@ -109,11 +111,12 @@ export class SearchPage implements OnInit {
     }, 200);
   }
 
-  getItems(event?: any): Promise<void | any> {
+  private getItems(query: string, event?: any): Promise<void | any> {
     return new Promise((resolve, reject) => {
-      this.search.search(this.searchInput)
+      this.search.search(query)
           .then(results => {
-            this.visibleItems = results;
+            this.searchInputOfLastResult = query;
+            this.visibleItems            = results;
             if (event)
               this.renderer.invokeElementMethod(event.target, 'blur');
             resolve();

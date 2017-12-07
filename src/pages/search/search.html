@@ -30,10 +30,14 @@
   </div>
 
   <div class="search-results" *ngIf="displayMode=='result'" [style.display]="displayMode=='result'?'block':'none'">
-    <ion-refresher (ionRefresh)="doRefresh($event)" [pullMax]="pullMaxValue" [pullMin]="80">
-      <ion-refresher-content></ion-refresher-content>
-    </ion-refresher>
     <ion-list id="search-result-list">
+      <ion-refresher (ionRefresh)="doRefresh($event)" [pullMax]="pullMaxValue" [pullMin]="80">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="{{'SEARCH_TAB.PULL_DOWN_REFRESH_TEXT' | translate}}"
+          refreshingSpinner="circles"
+          refreshingText="{{'SEARCH_TAB.REFRESHING_TEXT' | translate}}"></ion-refresher-content>
+      </ion-refresher>
       <ion-item *ngFor="let item of visibleItems">
         <movie-list-item [movie]="item" (itemClicked)="openSearchResult($event)"></movie-list-item>
       </ion-item>

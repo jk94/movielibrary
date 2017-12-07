@@ -5,7 +5,9 @@
     "BUTTON_SEARCH": "Suchen",
     "SEARCHBAR_PLACEHOLDER": "Suche nach Filmen oder Serien",
     "LOADING_TEXT": "Laden...",
-    "REMOVE_FROM_SEARCHLIST": "Entfernen"
+    "REMOVE_FROM_SEARCHLIST": "Entfernen",
+    "PULL_DOWN_REFRESH_TEXT":"Ziehen um zu aktualisieren",
+    "REFRESHING_TEXT": "Aktualisieren..."
   },
   "TABS": {
     "TAB_SEARCH_TITLE": "Suche",
