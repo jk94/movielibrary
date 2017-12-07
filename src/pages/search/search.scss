@@ -1,15 +1,7 @@
 page-search {
 
-  .searchbar-input-container {
-    /*.button-clear {
-      display: none !important;
-    }
-    .searchbar-search-icon {
-      display: none;
-    }
-    .searchbar-input {
-      padding-left: 10px;
-    }*/
+  .search-inputs {
+    background-color: color($colors, light);
   }
 
   .search-results {

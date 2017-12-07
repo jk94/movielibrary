@@ -1,5 +1,5 @@
 import { Component, OnInit, Renderer, ViewChild } from '@angular/core';
-import { List, LoadingController, NavController, NavParams, Searchbar } from 'ionic-angular';
+import { List, LoadingController, NavController, NavParams, Platform, Searchbar } from 'ionic-angular';
 import { SearchProvider } from "../../providers/search/search.provider";
 import { Movie } from "../../models/movie";
 import { MovieDetailPage } from "../movie-detail/movie-detail";
@@ -18,6 +18,7 @@ export class SearchPage implements OnInit {
   lastSearchEntries: string[] = [];
 
   displayMode: 'search' | 'result';
+  pullMaxValue: number = 100;
 
   @ViewChild(Searchbar) searchBar: Searchbar;
   @ViewChild(List) resultList: List;
@@ -30,7 +31,8 @@ export class SearchPage implements OnInit {
               private renderer: Renderer,
               private loadingCtrl: LoadingController,
               private translate: TranslateService,
-              private storage: NativeStorage) {
+              private storage: NativeStorage,
+              private platform: Platform) {
     this.displayMode = 'search';
   }
 
@@ -41,6 +43,7 @@ export class SearchPage implements OnInit {
         .catch(() => {
           this.storage.setItem(this.LAST_SEARCH_ENTRIES, []);
         });
+    this.pullMaxValue = this.platform.height();
   }
 
   onSearchSubmit(event) {
@@ -58,6 +61,9 @@ export class SearchPage implements OnInit {
   }
 
   doRefresh(event) {
+    console.log(event);
+    if (event.state != 'refreshing')
+      return;
     let loading = this.loadingCtrl.create(
       {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
@@ -68,6 +74,7 @@ export class SearchPage implements OnInit {
           loading.dismiss();
           event.complete();
         }).catch((err) => {console.log(err); });
+
   }
 
   onSearchFocus(event) {
@@ -90,7 +97,16 @@ export class SearchPage implements OnInit {
     this.lastSearchEntries = this.lastSearchEntries.filter(item => item != value);
     this.lastSearchEntries = [ value, ...this.lastSearchEntries ];
     this.lastSearchEntries = this.lastSearchEntries.slice(0, 10);
-    this.storage.setItem(this.LAST_SEARCH_ENTRIES, this.lastSearchEntries);
+    this.saveSearchInputs();
+  }
+
+  removeFromSearchList(item: string) {
+    this.lastSearchEntries = this.lastSearchEntries.filter(x => x != item);
+    this.saveSearchInputs();
+    this.searchBar.setFocus();
+    setTimeout(() => {
+      this.displayMode = 'search';
+    }, 200);
   }
 
   getItems(event?: any): Promise<void | any> {
@@ -109,6 +125,10 @@ export class SearchPage implements OnInit {
 
   openSearchResult(movie: Movie) {
     this.navCtrl.push(MovieDetailPage, { movieID : movie.id });
+  }
+
+  private saveSearchInputs() {
+    this.storage.setItem(this.LAST_SEARCH_ENTRIES, this.lastSearchEntries);
   }
 
 }

@@ -42,13 +42,21 @@ $infinite-scroll-loading-text-color: color($colors, secondary);
 // --------------------------------------------------
 // iOS only Sass variables can go here
 
+$loading-ios-text-color: color($colors, secondary);
+$loading-ios-spinner-color: color($colors, secondary);
 // App Material Design Variables
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+$loading-md-text-color: color($colors, secondary);
+$loading-md-spinner-color: color($colors, secondary);
+
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
+
+$loading-wp-text-color: color($colors, secondary);
+$loading-wp-spinner-color: color($colors, secondary);
 
 // App Theme
 // --------------------------------------------------

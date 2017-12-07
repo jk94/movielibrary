@@ -46,12 +46,3 @@ a.tab-button {
 a.tab-button[aria-selected="true"] {
   color: color($colors, secondary) !important;
 }
-
-ion-loading {
-  .loading-wrapper {
-    color: color($colors, secondary) !important;
-  }
-  .spinner-crescent circle {
-    stroke: color($colors, secondary) !important;
-  }
-}

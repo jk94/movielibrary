@@ -14,21 +14,28 @@
 
 <ion-content>
 
-  <div class="search-results" [style.display]="displayMode=='result'?'block':'none'">
-    <ion-refresher (ionRefresh)="doRefresh($event)">
+  <div class="search-inputs" *ngIf="displayMode=='search'" [style.display]="displayMode=='search'?'block':'none'">
+    <ion-list id="search-input-list">
+      <ion-item-sliding *ngFor="let item of lastSearchEntries">
+        <ion-item (click)="searchInputClick(item)">
+          {{item}}
+        </ion-item>
+        <ion-item-options side="right">
+          <button ion-button (click)="removeFromSearchList(item)">{{'SEARCH_TAB.REMOVE_FROM_SEARCHLIST' | translate}}
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+
+    </ion-list>
+  </div>
+
+  <div class="search-results" *ngIf="displayMode=='result'" [style.display]="displayMode=='result'?'block':'none'">
+    <ion-refresher (ionRefresh)="doRefresh($event)" [pullMax]="pullMaxValue" [pullMin]="80">
       <ion-refresher-content></ion-refresher-content>
     </ion-refresher>
     <ion-list id="search-result-list">
       <ion-item *ngFor="let item of visibleItems">
         <movie-list-item [movie]="item" (itemClicked)="openSearchResult($event)"></movie-list-item>
-      </ion-item>
-    </ion-list>
-  </div>
-
-  <div class="search-results" [style.display]="displayMode=='search'?'block':'none'">
-    <ion-list id="search-input-list">
-      <ion-item *ngFor="let item of lastSearchEntries" (click)="searchInputClick(item)">
-        {{item}}
       </ion-item>
     </ion-list>
   </div>

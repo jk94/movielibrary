@@ -39,6 +39,7 @@ export class MovieDetailPage {
           this.movieItem = movie;
           this.backdrop  = this.poster.getBackdropLink(movie.backdrop_path);
           this.image     = this.poster.getPosterLink(movie.poster_path);
+          this.image     = this.image ? this.image : this.poster.getImageNotFound();
           this.loading.dismiss();
         })
         .catch((err) => {

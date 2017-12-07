@@ -23,12 +23,22 @@ export class PosterApi extends Api {
         .subscribe();
   }
 
-  getPosterLink(posterPath: string) {
-    return `https://image.tmdb.org/t/p/w300${posterPath}`;
+  getImageNotFound(): string {
+    return '/assets/imgs/img.404.jpg';
   }
 
-  getBackdropLink(backdropPath: string) {
-    return `https://image.tmdb.org/t/p/w300${backdropPath}`;
+  getPosterLink(posterPath: string): string | null {
+    if (posterPath)
+      return `https://image.tmdb.org/t/p/w300${posterPath}`;
+    else
+      return null;
+  }
+
+  getBackdropLink(backdropPath: string): string | null {
+    if (backdropPath)
+      return `https://image.tmdb.org/t/p/w300${backdropPath}`;
+    else
+      return null;
   }
 
 }
