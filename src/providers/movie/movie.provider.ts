@@ -10,13 +10,13 @@ export class MovieProvider {
   }
 
   discoverMovies(page?: number): Promise<any> {
-      return new Promise((resolve, reject) => {
-        this.movieApi.discoverMovie(page ? page : 1)
-            .subscribe(result => {
-              Logger.log(result);
-              resolve(result.body.results);
-            }, reject);
-      });
+    return new Promise((resolve, reject) => {
+      this.movieApi.discoverMovie(page ? page : 1)
+          .subscribe(result => {
+            Logger.log(result);
+            resolve(result.body.results);
+          }, reject);
+    });
   }
 
   getMovie(movieID: number): Promise<any> {
@@ -30,6 +30,10 @@ export class MovieProvider {
             reject();
           })
     })
+  }
+
+  getVideo(videoKey: string): string {
+    return 'https://www.youtube.com/watch?v=' + videoKey;
   }
 
 }

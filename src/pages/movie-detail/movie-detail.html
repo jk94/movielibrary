@@ -50,4 +50,17 @@
       </ion-row>
     </ion-grid>
   </div>
+  <ion-slides class="card-background-page">
+    <ion-slide *ngFor="let video of movieItem?.videos.results">
+      <span class="card-title">{{video.name}}</span>
+      <ion-card (click)="openVideo(video.key)" class="trailer-card">
+        <img src="https://img.youtube.com/vi/{{video.key}}/hqdefault.jpg">
+        <div class="card-subtitle">
+          <div class="play-icon-wrapper">
+            <ion-icon name="play"></ion-icon>
+          </div>
+        </div>
+      </ion-card>
+    </ion-slide>
+  </ion-slides>
 </ion-content>

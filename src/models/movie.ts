@@ -4,6 +4,18 @@ export interface Movie {
   vote_count?: number;
   id?: number;
   video?: string | boolean;
+  videos?: {
+    results: {
+      id: string,
+      iso_639_1: string,
+      iso_3166_1: string,
+      key: string;
+      name: string;
+      site: string;
+      size: number;
+      type: string;
+    }[]
+  }
   title?: string;
   media_type: string;
   popularity?: string;

@@ -6,6 +6,7 @@ import { PosterApi } from "../../api/poster.api";
 import { MovieProvider } from "../../providers/movie/movie.provider";
 import { TranslateService } from "@ngx-translate/core";
 import { MovieListProvider } from "../../providers/movie-list/movie-list";
+import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 
 @Component({
              selector : 'page-movie-detail',
@@ -27,7 +28,8 @@ export class MovieDetailPage {
               private toast: ToastController,
               private translate: TranslateService,
               private loadingCtrl: LoadingController,
-              private myList: MovieListProvider) {
+              private myList: MovieListProvider,
+              private youtube: YoutubeVideoPlayer) {
   }
 
   ionViewDidLoad() {
@@ -63,6 +65,10 @@ export class MovieDetailPage {
       this.removeFromMyList();
     else
       this.addToMyList();
+  }
+
+  openVideo(key: string) {
+    this.youtube.openVideo(key);
   }
 
   private addToMyList(): void {

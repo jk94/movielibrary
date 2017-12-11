@@ -28,6 +28,7 @@ import { SearchApi } from "../api/search.api";
 import { PosterApi } from "../api/poster.api";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { MovieListProvider } from '../providers/movie-list/movie-list';
+import { YoutubeVideoPlayer } from "@ionic-native/youtube-video-player";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -74,6 +75,7 @@ export function createTranslateLoader(http: HttpClient) {
               Globalization,
               Keyboard,
               NativeStorage,
+              YoutubeVideoPlayer,
               SearchApi,
               PosterApi,
               MovieApi,
