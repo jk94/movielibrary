@@ -19,6 +19,10 @@ export class MovieListProvider {
     });
   }
 
+  public getMyList(): Movie[] {
+    return this.myList;
+  }
+
   public addToMyList(movie: Movie): Promise<void> {
     return new Promise((resolve, reject) => {
       if (!this.isInMyList(movie)) {

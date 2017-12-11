@@ -14,9 +14,12 @@
 
 
 <ion-content padding>
-<ion-list>
-  <ion-item>
-    {{"LIST_TAB.NO_ITEMS" | translate}}
-  </ion-item>
-</ion-list>
+  <ion-list>
+    <ion-item *ngIf="movieList.length==0">
+      {{"LIST_TAB.NO_ITEMS" | translate}}
+    </ion-item>
+    <ion-item *ngFor="let item of movieList">
+      <movie-list-item [movie]="item" (itemClicked)="openMyListItem($event)"></movie-list-item>
+    </ion-item>
+  </ion-list>
 </ion-content>
