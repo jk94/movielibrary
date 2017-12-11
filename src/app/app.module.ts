@@ -27,6 +27,7 @@ import { MovieApi } from "../api/movie.api";
 import { SearchApi } from "../api/search.api";
 import { PosterApi } from "../api/poster.api";
 import { NativeStorage } from "@ionic-native/native-storage";
+import { MovieListProvider } from '../providers/movie-list/movie-list';
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -78,6 +79,7 @@ export function createTranslateLoader(http: HttpClient) {
               MovieApi,
               SearchProvider,
               MovieProvider,
+              MovieListProvider,
               { provide : ErrorHandler, useClass : IonicErrorHandler }
             ]
           })

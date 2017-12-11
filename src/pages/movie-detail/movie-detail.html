@@ -2,6 +2,11 @@
 
   <ion-navbar>
     <ion-title>{{movieItem?.title}}</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="toggleMyList()">
+        <ion-icon name="{{inMyList ? 'star': 'star-outline'}}"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>

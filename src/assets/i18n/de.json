@@ -6,7 +6,7 @@
     "SEARCHBAR_PLACEHOLDER": "Suche nach Filmen oder Serien",
     "LOADING_TEXT": "Laden...",
     "REMOVE_FROM_SEARCHLIST": "Entfernen",
-    "PULL_DOWN_REFRESH_TEXT":"Ziehen um zu aktualisieren",
+    "PULL_DOWN_REFRESH_TEXT": "Ziehen um zu aktualisieren",
     "REFRESHING_TEXT": "Aktualisieren..."
   },
   "TABS": {
@@ -24,8 +24,15 @@
   },
   "PAGES": {
     "MOVIE_DETAIL_PAGE": {
-      "ERROR": {
-        "COULD_NOT_LOAD": "Film konnte nicht geladen werden"
+      "MESSAGE": {
+        "COULD_NOT_LOAD": "Film konnte nicht geladen werden.",
+        "ADD_TO_MY_LIST_IN_PROGRESS": "Film wird hinzugefügt...",
+        "ADD_TO_MY_LIST_SUCCESSFUL": "Film wurde hinzugefügt.",
+        "ADD_TO_MY_LIST_FAILED": "Film konnte nicht hinzugefügt werden.",
+
+        "REMOVE_FROM_MY_LIST_IN_PROGRESS": "Film wird entfernt...",
+        "REMOVE_FROM_MY_LIST_SUCCESSFUL": "Film wurde entfernt.",
+        "REMOVE_FROM_MY_LIST_FAILED": "Film konnte nicht entfernt werden."
       }
     }
   }
