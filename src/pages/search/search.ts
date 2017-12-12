@@ -62,7 +62,6 @@ export class SearchPage implements OnInit {
   }
 
   doRefresh(event) {
-    console.log(event);
     if (event.state != 'refreshing')
       return;
     let loading = this.loadingCtrl.create(

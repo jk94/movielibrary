@@ -10,7 +10,7 @@ export class MovieListProvider {
   private myList: Movie[]         = [];
   readonly MOVIE_LIST_STORAGE_KEY = 'movie_list_storage_key';
 
-  constructor(private platform: Platform,
+  constructor(platform: Platform,
               private nativeStorage: NativeStorage) {
     platform.ready().then(() => {
       nativeStorage.getItem(this.MOVIE_LIST_STORAGE_KEY)

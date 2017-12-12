@@ -1,0 +1,26 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{genreItem?.name}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+
+  <div class="search-results">
+    <ion-list id="search-result-list">
+      <ion-refresher (ionRefresh)="doRefresh($event)" [pullMax]="pullMaxValue" [pullMin]="80">
+        <ion-refresher-content
+          pullingIcon="arrow-dropdown"
+          pullingText="{{'SEARCH_TAB.PULL_DOWN_REFRESH_TEXT' | translate}}"
+          refreshingSpinner="circles"
+          refreshingText="{{'SEARCH_TAB.REFRESHING_TEXT' | translate}}"></ion-refresher-content>
+      </ion-refresher>
+      <ion-item *ngFor="let item of visibleItems">
+        <movie-list-item [movie]="item" (itemClicked)="openSearchResult(item)"></movie-list-item>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>
