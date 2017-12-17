@@ -16,15 +16,12 @@
   <img src="{{backdrop}}" class="poster" *ngIf="backdrop">
   <div class="detail-content-header">
     <div class="movie-title">{{movieItem?.title}}</div>
-    <div>
+    <div class="sub-backdrop-info">
       <span class="release-year">
         {{movieItem?.release_date | date:'yyyy'}}
       </span>
-      <span class="">
-
-      </span>
       <span class="runtime" *ngIf="movieItem?.runtime>0">
-        {{movieItem?.runtime}}
+        {{movieItem?.runtime | runtime}}
       </span>
       <span class="genres">
         <span *ngFor="let genre of movieItem?.genres | slice:0:3; last as isLast">

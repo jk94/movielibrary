@@ -34,6 +34,7 @@ import { SearchApi } from "../api/search.api";
 import { PosterApi } from "../api/poster.api";
 import { GenreApi } from "../api/genre.api";
 import { InAppBrowser } from "@ionic-native/in-app-browser";
+import { PipesModule } from "../pipes/pipes.module";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -63,7 +64,8 @@ export function createTranslateLoader(http: HttpClient) {
                                           deps : [ HttpClient ]
                                         }
                                       }),
-              ComponentsModule
+              ComponentsModule,
+              PipesModule
             ],
             bootstrap : [ IonicApp ],
             entryComponents : [
