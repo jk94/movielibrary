@@ -11,7 +11,7 @@ import { Globalization } from "@ionic-native/globalization";
              templateUrl : 'app.html'
            })
 export class MyApp {
-  rootPage: any = TabsPage;
+  rootPage: any;
 
   constructor(platform: Platform,
               statusBar: StatusBar,
@@ -37,6 +37,7 @@ export class MyApp {
       statusBar.overlaysWebView(true);
       statusBar.show();
       splashScreen.hide();
+      this.rootPage = TabsPage;
     });
   }
 }

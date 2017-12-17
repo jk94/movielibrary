@@ -1,11 +1,39 @@
 {
   "HELLO": "Hello World!",
   "SEARCH_TAB": {
-    "TITLE": "Search"
+    "TITLE": "Titlesearch",
+    "BUTTON_SEARCH": "Search",
+    "SEARCHBAR_PLACEHOLDER": "Search for movies or tv series",
+    "LOADING_TEXT": "Loading...",
+    "REMOVE_FROM_SEARCHLIST": "Remove",
+    "PULL_DOWN_REFRESH_TEXT": "Pull to refresh",
+    "REFRESHING_TEXT": "Refreshing..."
   },
   "TABS": {
     "TAB_SEARCH_TITLE": "Search",
     "TAB_LIST_TITLE": "My List",
     "TAB_SETTINGS_TITLE": "Settings"
+  },
+  "SETTINGS_TAB": {
+    "TITLE": "Settings",
+    "BUTTON_ABOUT": "About"
+  },
+  "LIST_TAB": {
+    "TITLE": "My List",
+    "NO_ITEMS": "Here are no movies yet."
+  },
+  "PAGES": {
+    "MOVIE_DETAIL_PAGE": {
+      "MESSAGE": {
+        "COULD_NOT_LOAD": "Movie couldn't be loaded",
+        "ADD_TO_MY_LIST_IN_PROGRESS": "Movie will be added to your list...",
+        "ADD_TO_MY_LIST_SUCCESSFUL": "Movie was added to your list.",
+        "ADD_TO_MY_LIST_FAILED": "Movie couldn't be added to your list.",
+
+        "REMOVE_FROM_MY_LIST_IN_PROGRESS": "Movie will be removed from your list...",
+        "REMOVE_FROM_MY_LIST_SUCCESSFUL": "Movie was removed from your list.",
+        "REMOVE_FROM_MY_LIST_FAILED": "Movie couldn't be removed from your list."
+      }
+    }
   }
 }
