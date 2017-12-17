@@ -9,12 +9,19 @@
 <ion-content padding>
   <ion-list>
     <ion-list-header>Follow us on Twitter</ion-list-header>
-    <ion-item>
-      <ion-icon name="ionic" item-start></ion-icon>
-      @ionicframework
+    <ion-item (click)="openTwitter()">
+      <ion-icon name="logo-twitter" item-start></ion-icon>
+      @jkdev
     </ion-item>
-    <ion-item>
-      <img src="/assets/imgs/powered-by-mdb.svg">
-    </ion-item>
+
+    <ion-item-group>
+      <ion-item-divider>
+        Powered by:
+      </ion-item-divider>
+      <ion-item (click)="openMovieDB()">
+        <img src="/assets/imgs/powered-by-mdb.svg">
+      </ion-item>
+    </ion-item-group>
+
   </ion-list>
 </ion-content>

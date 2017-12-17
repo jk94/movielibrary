@@ -33,6 +33,7 @@ import { MovieApi } from "../api/movie.api";
 import { SearchApi } from "../api/search.api";
 import { PosterApi } from "../api/poster.api";
 import { GenreApi } from "../api/genre.api";
+import { InAppBrowser } from "@ionic-native/in-app-browser";
 
 export function createTranslateLoader(http: HttpClient) {
   return new TranslateHttpLoader(http, './assets/i18n/', '.json');
@@ -83,6 +84,7 @@ export function createTranslateLoader(http: HttpClient) {
               Keyboard,
               NativeStorage,
               YoutubeVideoPlayer,
+              InAppBrowser,
               SearchApi,
               PosterApi,
               MovieApi,
