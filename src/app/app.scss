@@ -46,3 +46,7 @@ a.tab-button {
 a.tab-button[aria-selected="true"] {
   color: color($colors, secondary) !important;
 }
+
+.scroll-content {
+  border-color: color($colors, secondary) !important;
+}

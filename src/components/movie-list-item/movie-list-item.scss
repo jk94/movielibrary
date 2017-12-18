@@ -10,6 +10,8 @@ movie-list-item {
       display: flex;
       flex-flow: column;
       justify-content: center;
+      padding-top: 0;
+      padding-bottom: 0;
 
       .inner-content {
         padding-left: 10px;

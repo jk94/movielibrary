@@ -10,6 +10,6 @@ export class RuntimePipe implements PipeTransform {
     let hours   = Number.parseInt('' + runtime / 60);
     let minutes = runtime - hours * 60;
 
-    return `${hours}h${minutes}m`
+    return `${hours}h ${minutes}m`
   }
 }

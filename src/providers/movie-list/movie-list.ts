@@ -7,20 +7,31 @@ import { Logger } from "../../utils/logger";
 @Injectable()
 export class MovieListProvider {
 
-  private myList: Movie[]         = [];
+  private myList: Movie[];
   readonly MOVIE_LIST_STORAGE_KEY = 'movie_list_storage_key';
 
-  constructor(platform: Platform,
+  constructor(private platform: Platform,
               private nativeStorage: NativeStorage) {
-    platform.ready().then(() => {
-      nativeStorage.getItem(this.MOVIE_LIST_STORAGE_KEY)
-                   .then(response => {this.myList = response})
-                   .catch(err => {Logger.log(err)});
-    });
   }
 
-  public getMyList(): Movie[] {
-    return this.myList;
+  public getMyList(): Promise<Movie[] | any> {
+    if (!this.myList)
+      return new Promise((resolve, reject) => {
+        this.platform.ready().then(() => {
+          this.nativeStorage.getItem(this.MOVIE_LIST_STORAGE_KEY)
+              .then(response => {
+                this.myList = response;
+                resolve(this.myList)
+              })
+              .catch(err => {
+                Logger.log(err);
+                reject(err)
+              });
+        });
+      });
+    return new Promise<Movie[] | any>((resolve, reject) => {
+      resolve(this.myList);
+    });
   }
 
   public addToMyList(movie: Movie): Promise<void> {

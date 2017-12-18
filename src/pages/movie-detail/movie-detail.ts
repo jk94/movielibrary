@@ -43,8 +43,9 @@ export class MovieDetailPage {
         .then(movie => {
           this.movieItem = movie;
           this.backdrop  = this.poster.getBackdropLink(movie.backdrop_path);
+          this.backdrop  = this.backdrop ? this.backdrop : this.poster.getBackdropNotFound();
           this.image     = this.poster.getPosterLink(movie.poster_path);
-          this.image     = this.image ? this.image : this.poster.getImageNotFound();
+          this.image     = this.image ? this.image : this.poster.getPosterNotFound();
           this.inMyList  = this.myList.isInMyList(movie);
           this.loading.dismiss();
         })

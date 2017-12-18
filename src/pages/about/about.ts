@@ -14,11 +14,11 @@ export class AboutPage {
   }
 
   openTwitter() {
-    let browser = this.inAppBrowser.create('https://twitter.com/JanKo135790', '_system', 'location=yes');
+    this.inAppBrowser.create('https://twitter.com/JanKo135790', '_system', 'location=yes');
   }
 
   openMovieDB() {
-    let browser = this.inAppBrowser.create('https://www.themoviedb.org', '_system', 'location=yes');
+    this.inAppBrowser.create('https://www.themoviedb.org', '_system', 'location=yes');
   }
 
 }

@@ -18,7 +18,7 @@ export class MovieListItemComponent implements OnInit {
 
   ngOnInit() {
     this.image = this.poster.getPosterLink(this.movie.poster_path);
-    this.image = this.image ? this.image : this.poster.getImageNotFound();
+    this.image = this.image ? this.image : this.poster.getPosterNotFound();
   }
 
   _itemClicked() {

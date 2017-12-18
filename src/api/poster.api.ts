@@ -23,8 +23,12 @@ export class PosterApi extends Api {
         .subscribe();
   }
 
-  getImageNotFound(): string {
-    return '/assets/imgs/img.404.jpg';
+  getPosterNotFound(): string {
+    return '/assets/imgs/img.404.png';
+  }
+
+  getBackdropNotFound(): string {
+    return '/assets/imgs/backdrop.404.png';
   }
 
   getPosterLink(posterPath: string): string | null {

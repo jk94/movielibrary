@@ -17,6 +17,9 @@ page-search {
       > .item-inner {
         padding-left: 10px;
         padding-right: 10px;
+        padding-bottom: 1px;
+        margin-bottom: 5px;
+        border-color: color($colors, secondary) !important;
         > div > ion-label {
           margin: 0;
         }

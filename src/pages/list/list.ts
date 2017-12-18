@@ -4,6 +4,7 @@ import { MovieListProvider } from "../../providers/movie-list/movie-list";
 import { Movie } from "../../models/movie";
 import { Logger } from "../../utils/logger";
 import { MovieDetailPage } from "../movie-detail/movie-detail";
+import { PosterApi } from "../../api/poster.api";
 
 @Component({
              selector : 'page-list',
@@ -14,12 +15,16 @@ export class ListPage {
   movieList: Movie[] = [];
 
   constructor(private navCtrl: NavController,
-              private myList: MovieListProvider) {
+              private myList: MovieListProvider,
+              private poster: PosterApi) {
   }
 
   ionViewWillEnter() {
     Logger.log('List enter');
-    this.movieList = this.myList.getMyList();
+    this.myList.getMyList()
+        .then(movies => {
+          this.movieList = movies;
+        });
   }
 
   ionViewDidLoad() {
@@ -27,6 +32,13 @@ export class ListPage {
 
   openMyListItem(item) {
     this.navCtrl.push(MovieDetailPage, { movieID : item.id });
+  }
+
+  getImageForMovie(movie: Movie): string {
+    let image = this.poster.getBackdropLink(movie.backdrop_path);
+    if (image)
+      return image;
+    return this.poster.getBackdropNotFound();
   }
 
 }
