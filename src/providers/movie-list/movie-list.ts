@@ -25,44 +25,54 @@ export class MovieListProvider {
               })
               .catch(err => {
                 Logger.log(err);
-                reject(err)
+                this.myList = [];
+                resolve();
               });
         });
       });
-    return new Promise<Movie[] | any>((resolve, reject) => {
-      resolve(this.myList);
-    });
+    return new Promise<Movie[] | any>((resolve, reject) => resolve(this.myList));
   }
 
   public addToMyList(movie: Movie): Promise<void> {
     return new Promise((resolve, reject) => {
-      if (!this.isInMyList(movie)) {
-        this.myList.push(movie);
-        this.saveMyList()
-            .then(() => {resolve()})
-            .catch(() => reject());
-      } else {
-        Logger.log('already in list');
-        resolve();
-      }
-    })
+      this.isInMyList(movie)
+          .then(inList => {
+            if (!inList) {
+              return this.getMyList();
+            } else {
+              Logger.log('already in list');
+              reject()
+            }
+          })
+          .then(list => {
+            list.push(movie);
+            return this.saveMyList()
+          })
+          .then(() => {resolve()})
+          .catch(() => reject());
+    });
   }
 
   public removeFromMyList(movie: Movie): Promise<void> {
     return new Promise((resolve, reject) => {
-      if (this.isInMyList(movie)) {
-        this.myList = this.myList.filter(x => x.id != movie.id);
-        this.saveMyList()
-            .then(() => {resolve()})
-            .catch(() => reject());
-      } else {
-        resolve();
-      }
+      this.isInMyList(movie)
+          .then(inList => {
+            if (inList) {
+              this.myList = this.myList.filter(x => x.id != movie.id);
+              this.saveMyList()
+                  .then(() => {resolve()})
+                  .catch(() => reject());
+            } else {
+              resolve();
+            }
+          });
     })
   }
 
-  public isInMyList(movie: Movie): boolean {
-    return !!this.myList.find(x => x.id == movie.id);
+  public isInMyList(movie: Movie): Promise<boolean> {
+    return this.getMyList().then(list => {
+      return !!list.find(x => x.id == movie.id);
+    }).catch(() => false);
   }
 
   private saveMyList(): Promise<any> {

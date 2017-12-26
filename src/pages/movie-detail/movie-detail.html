@@ -49,7 +49,7 @@
   </div>
   <ion-slides class="card-background-page">
     <ion-slide *ngFor="let video of movieItem?.videos.results">
-      <span class="card-title">{{video.name}}</span>
+      <div class="card-title">{{video.name}}</div>
       <ion-card (click)="openVideo(video.key)" class="trailer-card">
         <img src="https://img.youtube.com/vi/{{video.key}}/hqdefault.jpg">
         <div class="card-subtitle">

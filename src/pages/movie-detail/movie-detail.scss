@@ -46,10 +46,14 @@ page-movie-detail {
   }
 
   .card-title {
+    min-height: 50px;
     font-size: 1.0em;
     width: 100%;
     font-weight: bold;
     color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .card-subtitle {

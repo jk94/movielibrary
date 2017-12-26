@@ -46,10 +46,11 @@ export class MovieDetailPage {
           this.backdrop  = this.backdrop ? this.backdrop : this.poster.getBackdropNotFound();
           this.image     = this.poster.getPosterLink(movie.poster_path);
           this.image     = this.image ? this.image : this.poster.getPosterNotFound();
-          this.inMyList  = this.myList.isInMyList(movie);
+          this.myList.isInMyList(movie).then(inList => this.inMyList = inList);
           this.loading.dismiss();
         })
         .catch((err) => {
+          Logger.error(err);
           this.loading.dismiss();
           this.toast.create({
                               message : this.translate.instant('PAGES.MOVIE_DETAIL_PAGE.MESSAGE.COULD_NOT_LOAD'),
@@ -62,10 +63,14 @@ export class MovieDetailPage {
   }
 
   public toggleMyList(): void {
-    if (this.myList.isInMyList(this.movieItem))
-      this.removeFromMyList();
-    else
-      this.addToMyList();
+    this.myList.isInMyList(this.movieItem)
+        .then(result => {
+          console.log(result);
+          if (result)
+            this.removeFromMyList();
+          else
+            this.addToMyList();
+        });
   }
 
   openVideo(key: string) {
