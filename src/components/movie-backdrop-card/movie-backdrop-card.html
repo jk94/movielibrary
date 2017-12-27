@@ -1,5 +1,7 @@
 <ion-card (click)="cardClicked()">
   <img src="{{image}}"/>
-  <div class="card-title" text-wrap>{{movie.title}}</div>
-  <div class="card-subtitle">({{movie.release_date|date:'yyyy'}})</div>
+  <div class="text">
+    <div class="card-title" text-wrap>{{movie.title}}</div>
+    <div class="card-subtitle">({{movie.release_date|date:'yyyy'}})</div>
+  </div>
 </ion-card>

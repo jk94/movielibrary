@@ -1,3 +1,12 @@
 page-list {
 
+  .item-inner {
+    padding-right: 0 !important;
+    border-bottom: none !important;
+
+    ion-label {
+      margin: 0;
+    }
+  }
+
 }
