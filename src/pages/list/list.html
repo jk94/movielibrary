@@ -9,11 +9,11 @@
 
 <ion-content>
   <ion-list>
-    <ion-item *ngIf="movieList.length==0">
+    <ion-item *ngIf="myMovieList.length==0">
       {{"LIST_TAB.NO_ITEMS" | translate}}
     </ion-item>
-    <ion-item *ngFor="let item of movieList" no-padding>
-      <movie-backdrop-card [image]="getImageForMovie(item)" [movie]="item"
+    <ion-item *ngFor="let item of myMovieList" no-padding>
+      <movie-backdrop-card [image]="getImageForMovie(item.item)" [movie]="item.item"
                            (itemClicked)="openMyListItem($event)"></movie-backdrop-card>
     </ion-item>
   </ion-list>

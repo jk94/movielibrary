@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import { MovieListProvider } from "../../providers/movie-list/movie-list";
 import { Movie } from "../../models/movie";
-import { Logger } from "../../utils/logger";
 import { MovieDetailPage } from "../movie-detail/movie-detail";
 import { PosterApi } from "../../api/poster.api";
+import { MyListItem } from "../../models/my-list-item";
 
 @Component({
              selector : 'page-list',
@@ -12,7 +12,7 @@ import { PosterApi } from "../../api/poster.api";
            })
 export class ListPage {
 
-  movieList: Movie[] = [];
+  myMovieList: MyListItem[] = [];
 
   constructor(private navCtrl: NavController,
               private myList: MovieListProvider,
@@ -20,18 +20,17 @@ export class ListPage {
   }
 
   ionViewWillEnter() {
-    Logger.log('List enter');
     this.myList.getMyList()
-        .then(movies => {
-          this.movieList = movies;
+        .then(listItems => {
+          this.myMovieList = listItems;
         });
   }
 
   ionViewDidLoad() {
   }
 
-  openMyListItem(item) {
-    this.navCtrl.push(MovieDetailPage, { movieID : item.id });
+  openMyListItem(movie: Movie): void {
+    this.navCtrl.push(MovieDetailPage, { movieID : movie.id });
   }
 
   getImageForMovie(movie: Movie): string {

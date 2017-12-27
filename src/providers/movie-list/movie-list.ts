@@ -3,18 +3,19 @@ import { Movie } from "../../models/movie";
 import { NativeStorage } from "@ionic-native/native-storage";
 import { Platform } from "ionic-angular";
 import { Logger } from "../../utils/logger";
+import { MyListItem } from "../../models/my-list-item";
 
 @Injectable()
 export class MovieListProvider {
 
-  private myList: Movie[];
+  private myList: MyListItem[];
   readonly MOVIE_LIST_STORAGE_KEY = 'movie_list_storage_key';
 
   constructor(private platform: Platform,
               private nativeStorage: NativeStorage) {
   }
 
-  public getMyList(): Promise<Movie[] | any> {
+  public getMyList(): Promise<MyListItem[]> {
     if (!this.myList)
       return new Promise((resolve, reject) => {
         this.platform.ready().then(() => {
@@ -26,11 +27,11 @@ export class MovieListProvider {
               .catch(err => {
                 Logger.log(err);
                 this.myList = [];
-                resolve();
+                resolve(this.myList);
               });
         });
       });
-    return new Promise<Movie[] | any>((resolve, reject) => resolve(this.myList));
+    return new Promise<MyListItem[]>((resolve, reject) => resolve(this.myList));
   }
 
   public addToMyList(movie: Movie): Promise<void> {
@@ -45,7 +46,8 @@ export class MovieListProvider {
             }
           })
           .then(list => {
-            list.push(movie);
+            let listItem: MyListItem = { item : movie, added_to_list_at : Date.now() };
+            list.push(listItem);
             return this.saveMyList()
           })
           .then(() => {resolve()})
@@ -58,7 +60,7 @@ export class MovieListProvider {
       this.isInMyList(movie)
           .then(inList => {
             if (inList) {
-              this.myList = this.myList.filter(x => x.id != movie.id);
+              this.myList = this.myList.filter(x => x.item.id != movie.id);
               this.saveMyList()
                   .then(() => {resolve()})
                   .catch(() => reject());
@@ -71,7 +73,7 @@ export class MovieListProvider {
 
   public isInMyList(movie: Movie): Promise<boolean> {
     return this.getMyList().then(list => {
-      return !!list.find(x => x.id == movie.id);
+      return !!list.find(x => x.item.id == movie.id);
     }).catch(() => false);
   }
 
