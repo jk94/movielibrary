@@ -47,6 +47,7 @@ export class MovieDetailPage {
           this.image     = this.poster.getPosterLink(movie.poster_path);
           this.image     = this.image ? this.image : this.poster.getPosterNotFound();
           this.myList.isInMyList(movie).then(inList => this.inMyList = inList);
+          this.movieItem.overview = this.movieItem.overview.length > 0 ? this.movieItem.overview : this.translate.instant('PAGES.MOVIE_DETAIL_PAGE.NO_OVERVIEW');
           this.loading.dismiss();
         })
         .catch((err) => {
@@ -73,7 +74,7 @@ export class MovieDetailPage {
         });
   }
 
-  openVideo(key: string) {
+  public openVideo(key: string): void {
     this.youtube.openVideo(key);
   }
 

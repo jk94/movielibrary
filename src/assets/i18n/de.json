@@ -29,11 +29,11 @@
         "ADD_TO_MY_LIST_IN_PROGRESS": "Film wird deiner Liste hinzugefügt...",
         "ADD_TO_MY_LIST_SUCCESSFUL": "Film wurde deiner Liste hinzugefügt.",
         "ADD_TO_MY_LIST_FAILED": "Film konnte nicht deiner Liste hinzugefügt werden.",
-
         "REMOVE_FROM_MY_LIST_IN_PROGRESS": "Film wird von deiner Liste entfernt...",
         "REMOVE_FROM_MY_LIST_SUCCESSFUL": "Film wurde von deiner Liste entfernt.",
         "REMOVE_FROM_MY_LIST_FAILED": "Film konnte nicht von deiner Liste entfernt werden."
-      }
+      },
+      "NO_OVERVIEW": "Dieser Film hat leider keine Beschreibung."
     }
   }
 }
