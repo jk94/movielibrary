@@ -33,7 +33,9 @@
         "REMOVE_FROM_MY_LIST_SUCCESSFUL": "Film wurde von deiner Liste entfernt.",
         "REMOVE_FROM_MY_LIST_FAILED": "Film konnte nicht von deiner Liste entfernt werden."
       },
-      "NO_OVERVIEW": "Dieser Film hat leider keine Beschreibung."
+      "NO_OVERVIEW": "Dieser Film hat leider keine Beschreibung.",
+      "ADD_TO_WATCHLIST": "Hinzufügen",
+      "REMOVE_FROM_WATCHLIST": "Entfernen"
     }
   }
 }

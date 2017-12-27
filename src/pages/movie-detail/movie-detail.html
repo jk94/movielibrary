@@ -45,6 +45,20 @@
           </div>
         </ion-col>
       </ion-row>
+      <ion-row>
+        <ion-col col-12>
+          <button ion-button text-wrap outline full color="secondary" *ngIf="!inMyList" (click)="toggleMyList()">
+            <ion-icon name="add"></ion-icon>
+            <span class="icon-spacer">.</span>
+            {{"PAGES.MOVIE_DETAIL_PAGE.ADD_TO_WATCHLIST"|translate}}
+          </button>
+          <button ion-button text-wrap outline full color="secondary" *ngIf="inMyList" (click)="toggleMyList()">
+            <ion-icon name="remove"></ion-icon>
+            <span class="icon-spacer">.</span>
+            {{"PAGES.MOVIE_DETAIL_PAGE.REMOVE_FROM_WATCHLIST"|translate}}
+          </button>
+        </ion-col>
+      </ion-row>
     </ion-grid>
   </div>
   <ion-slides class="card-background-page">
@@ -54,7 +68,7 @@
         <img src="https://img.youtube.com/vi/{{video.key}}/hqdefault.jpg">
         <div class="card-subtitle">
           <div class="play-icon-wrapper">
-            <ion-icon name="play"></ion-icon>
+            <ion-icon name="play" color="secondary"></ion-icon>
           </div>
         </div>
       </ion-card>
