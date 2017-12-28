@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { Api } from "./api";
+import { Observable } from "rxjs/Observable";
 
 @Injectable()
 export class SearchApi extends Api {
@@ -21,15 +22,24 @@ export class SearchApi extends Api {
       });
   }
 
-  searchMovies(search: string): any {
-    let params = this.getDefaultParams()
-                     .set('query', search)
-                     .set('include_adult', 'true');
+  searchMovies(search: string, page?: number): any {
+    if (!page)
+      page = 1;
 
-    return this.http.get(this.baseUrl + '/search/movie',
-      {
-        params : params,
-        observe : "response"
+    if (page && page > 0 && page <= 100) {
+      let params = this.getDefaultParams()
+                       .set('query', search)
+                       .set('include_adult', 'true');
+      if (page)
+        params = params.set('page', '' + page);
+      return this.http.get(this.baseUrl + '/search/movie',
+        {
+          params : params,
+          observe : "response"
+        });
+    } else
+      return Observable.create(observer => {
+        observer.error('Page must be between 1 and 100');
       });
   }
 

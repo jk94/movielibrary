@@ -12,7 +12,7 @@
 </ion-header>
 
 
-<ion-content>
+<ion-content *ngIf="movieItem">
   <img src="{{backdrop}}" class="poster" *ngIf="backdrop">
   <div class="detail-content-header">
     <div class="movie-title">{{movieItem?.title}}</div>

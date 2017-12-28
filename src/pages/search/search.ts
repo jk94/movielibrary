@@ -12,9 +12,10 @@ import { NativeStorage } from "@ionic-native/native-storage";
            })
 export class SearchPage implements OnInit {
 
-  searchInput: string;
-  searchInputOfLastResult: string;
-  visibleItems: Movie[];
+  public searchPage = 1;
+         searchInput: string;
+         searchInputOfLastResult: string;
+         visibleItems: Movie[];
 
   lastSearchEntries: string[] = [];
 
@@ -38,6 +39,7 @@ export class SearchPage implements OnInit {
   }
 
   ngOnInit() {
+    this.searchPage = 1;
     this.storage.getItem(this.LAST_SEARCH_ENTRIES).then(items => {
       this.lastSearchEntries = items
     })
@@ -49,13 +51,14 @@ export class SearchPage implements OnInit {
 
   onSearchSubmit(event) {
     this.displayMode = 'result';
+    this.resetResults();
     this.addSearchEntry(this.searchInput);
     let loading = this.loadingCtrl.create(
       {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
       });
     loading.present();
-    this.getItems(this.searchInput, event)
+    this.getItems(this.searchInput, this.searchPage, event)
         .then(() => {
           loading.dismiss();
         }).catch((err) => {console.log(err); });
@@ -64,18 +67,30 @@ export class SearchPage implements OnInit {
   doRefresh(event) {
     if (event.state != 'refreshing')
       return;
+    this.resetResults();
     let loading = this.loadingCtrl.create(
       {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
       });
     loading.present();
     let query: string = this.searchInput.length > 0 ? this.searchInput : this.searchInputOfLastResult;
-    this.getItems(query)
+    this.getItems(query, this.searchPage)
         .then(() => {
           loading.dismiss();
           event.complete();
         }).catch((err) => {console.log(err); });
 
+  }
+
+  resetResults(): void {
+    this.searchPage = 1;
+    //this.visibleItems = [];
+  }
+
+  infiniteSearch(infiniteScroll) {
+    this.getItems(this.searchInputOfLastResult, ++this.searchPage)
+        .then(() => {infiniteScroll.complete()})
+        .catch(() => { infiniteScroll.complete(); })
   }
 
   onSearchFocus(event) {
@@ -110,12 +125,15 @@ export class SearchPage implements OnInit {
     }, 200);
   }
 
-  private getItems(query: string, event?: any): Promise<void | any> {
+  private getItems(query: string, page?: number, event?: any): Promise<void | any> {
     return new Promise((resolve, reject) => {
-      this.search.search(query)
+      this.search.search(query, page)
           .then(results => {
             this.searchInputOfLastResult = query;
-            this.visibleItems            = results;
+            if (page == 1)
+              this.visibleItems = results;
+            if (page > 1)
+              this.visibleItems = [].concat(this.visibleItems, results);
             if (event)
               this.renderer.invokeElementMethod(event.target, 'blur');
             resolve();

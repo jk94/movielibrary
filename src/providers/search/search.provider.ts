@@ -9,9 +9,9 @@ export class SearchProvider {
 
   }
 
-  public search(query: string): Promise<any> {
+  public search(query: string, page?: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.searchApi.searchMovies(query)
+      this.searchApi.searchMovies(query, page ? page : 1)
           .subscribe(result => {
             Logger.log(result);
             resolve(result.body.results);
