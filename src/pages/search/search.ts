@@ -84,7 +84,6 @@ export class SearchPage implements OnInit {
 
   resetResults(): void {
     this.searchPage = 1;
-    //this.visibleItems = [];
   }
 
   infiniteSearch(infiniteScroll) {
