@@ -12,7 +12,8 @@ import { MovieDetailPage } from "../movie-detail/movie-detail";
 export class GenreSearchPage {
 
   genreItem: { id: number, name: string };
-  visibleItems: Movie[] = [];
+  visibleItems: Movie[]    = [];
+  public generPage: number = 1;
 
   constructor(private navCtrl: NavController,
               private navParams: NavParams,
@@ -20,18 +21,22 @@ export class GenreSearchPage {
               private loadingCtrl: LoadingController,
               private translate: TranslateService) {
     this.genreItem = this.navParams.get('genre');
-    this.getMovies().catch(() => this.navCtrl.pop());
+    this.getMovies(1).catch(() => this.navCtrl.pop());
   }
 
   ionViewDidLoad() {
 
   }
 
-  private getMovies(): Promise<any> {
+  private getMovies(page?: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.genre.getMoviesToGenre(this.genreItem.id)
+      this.genre.getMoviesToGenre(this.genreItem.id, page ? page : 1)
           .then(movies => {
-            this.visibleItems = movies;
+            console.log(movies);
+            if (page == 1)
+              this.visibleItems = movies;
+            if (page > 1)
+              this.visibleItems = [].concat(this.visibleItems, movies);
             resolve();
           })
           .catch(err => {reject(err)});
@@ -40,7 +45,7 @@ export class GenreSearchPage {
   }
 
   doRefresh(event) {
-    console.log(event);
+    this.generPage = 1;
     if (event.state != 'refreshing')
       return;
     let loading: Loading = this.loadingCtrl.create(
@@ -48,11 +53,17 @@ export class GenreSearchPage {
         content : this.translate.instant('SEARCH_TAB.LOADING_TEXT')
       });
     loading.present();
-    this.getMovies()
+    this.getMovies(this.generPage)
         .then(() => {
           loading.dismiss();
           event.complete();
         }).catch((err) => {console.log(err); });
+  }
+
+  infiniteGenre(infiniteScroll) {
+    this.getMovies(++this.generPage)
+        .then(() => {infiniteScroll.complete()})
+        .catch(() => { infiniteScroll.complete(); })
   }
 
   openSearchResult(item: Movie) {

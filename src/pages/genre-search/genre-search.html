@@ -21,6 +21,12 @@
       <ion-item *ngFor="let item of visibleItems">
         <movie-list-item [movie]="item" (itemClicked)="openSearchResult(item)"></movie-list-item>
       </ion-item>
+      <ion-infinite-scroll (ionInfinite)="infiniteGenre($event)">
+        <ion-infinite-scroll-content
+          color="secondary"
+          loadingText="{{'SEARCH_TAB.LOADING_TEXT'|translate}}">
+        </ion-infinite-scroll-content>
+      </ion-infinite-scroll>
     </ion-list>
   </div>
 </ion-content>

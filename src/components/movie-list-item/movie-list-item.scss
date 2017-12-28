@@ -1,4 +1,11 @@
 movie-list-item {
+  .list-marker {
+    position: absolute;
+    right: 5%;
+    top: 1px;
+    font-size: 1.2em;
+  }
+
   ion-grid.grid {
     padding: 0;
 

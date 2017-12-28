@@ -22,9 +22,9 @@ export class GenreProvider {
     })
   }
 
-  getMoviesToGenre(genreID: number): Promise<any> {
+  getMoviesToGenre(genreID: number, page?: number): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.genreApi.getMovies(genreID)
+      this.genreApi.getMovies(genreID, page ? page : 1)
           .subscribe(response => {
             Logger.log(response);
             resolve(response.body.results);

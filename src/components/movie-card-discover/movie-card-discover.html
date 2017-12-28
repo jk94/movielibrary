@@ -1,3 +1,6 @@
 <ion-card (click)="goToDetail()">
   <img src="{{image}}">
+  <div class="list-marker" *ngIf="inList|async">
+    <ion-icon name="ios-bookmark"></ion-icon>
+  </div>
 </ion-card>

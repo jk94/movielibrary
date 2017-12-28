@@ -4,6 +4,9 @@
     <ion-row>
       <ion-col col-4 class="image-col">
         <img src="{{image}}">
+        <div class="list-marker" *ngIf="inList|async">
+          <ion-icon name="ios-bookmark"></ion-icon>
+        </div>
       </ion-col>
       <ion-col col-8 class="content-col">
         <div class="inner-content">
@@ -11,7 +14,6 @@
             {{movie.title}} ({{movie.release_date | date:'yyyy'}})
           </div>
           <div class="movie-actors">
-
           </div>
         </div>
       </ion-col>
