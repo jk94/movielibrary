@@ -19,6 +19,8 @@ export class MovieDetailPage {
   image: string;
   inMyList: boolean = false;
 
+  ratingStarBar: string[] = [];
+
   loading: Loading;
 
   constructor(private navCtrl: NavController,
@@ -48,6 +50,7 @@ export class MovieDetailPage {
           this.image     = this.image ? this.image : this.poster.getPosterNotFound();
           this.myList.isInMyList(movie).then(inList => this.inMyList = inList);
           this.movieItem.overview = this.movieItem.overview.length > 0 ? this.movieItem.overview : this.translate.instant('PAGES.MOVIE_DETAIL_PAGE.NO_OVERVIEW');
+          this.ratingStarBar      = this.calculateRatingStarBar(movie.vote_average);
           this.loading.dismiss();
         })
         .catch((err) => {
@@ -134,5 +137,25 @@ export class MovieDetailPage {
                               duration : 2000
                             }).present();
         });
+  }
+
+  private calculateRatingStarBar(voteAverage: number): string[] {
+    let voteOnFive    = voteAverage / 2;
+    let fullStarCount = Number.parseInt(voteOnFive.toString().split('.')[ 0 ]);
+    let decimals      = Number.parseInt(voteOnFive.toString().split('.')[ 1 ]);
+
+    let halfStar: boolean = decimals > 5;
+
+    let result = [];
+    for (let i = 0; i < fullStarCount; i++) {
+      result.push('star');
+    }
+    if (halfStar) result.push('star-half');
+
+    for (; result.length < 5;) {
+      result.push('star-outline')
+    }
+
+    return result;
   }
 }

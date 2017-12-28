@@ -35,7 +35,16 @@
     <ion-grid>
       <ion-row>
         <ion-col col-4 class="image-col">
+
           <img src="{{image}}">
+
+          <div class="rating">
+            <span *ngFor="let starItem of ratingStarBar">
+              <ion-icon [name]="starItem" color="secondary"></ion-icon>
+            </span>
+            {{movieItem?.vote_average/2|number:'1.0-1'}}/5
+          </div>
+
         </ion-col>
         <ion-col col-8 class="content-col">
           <div class="inner-content">
